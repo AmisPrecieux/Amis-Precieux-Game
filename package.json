@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "vue": "^3.3.4",
-    "vuedraggable": "^4.1.0"
+    "vuedraggable": "^4.1.0",
+    "blueimp-load-image": "^5.16.0",
+    "lodash.sample": "^4.2.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
