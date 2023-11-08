@@ -11,8 +11,8 @@
   </template>
   
   <script>
-  import Board from './Board.vue'
-  import OptionsPane from './OptionsPane.vue'
+  import Board from '../components/Board.vue'
+  import OptionsPane from '../components/OptionsPane.vue'
   
   export default {
     name: 'puzzle',
