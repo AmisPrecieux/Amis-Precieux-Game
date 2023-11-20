@@ -1,7 +1,6 @@
 <template>
   <div class="board">
     <div class="frame-wrapper" :style="frameSize">
-      <p v-if="valid" class="win">You Win!</p>
       <div class="frame" :style="frameSize">
         <Tile v-for="tile in tiles"
           :key="tile.position"
@@ -13,18 +12,18 @@
     </div>
 
     <div class="controls">
-      <a class="toggle-original" href="#" @click.prevent="showingOriginal = !showingOriginal">
-        Toggle Original Image
-      </a>
-      <a class="shuffle" href="#" @click.prevent="shuffleTiles">Reshuffle</a>
-      <a class="reset" href="#" @click.prevent="reset">Reset</a>
+      <a class="shuffle" href="#" @click.prevent="shuffleTiles">Mélanger</a>
+      <a class="reset" href="#" @click.prevent="reset">Recommencer</a>
+      <a href="#" @click.prevent="changeLevel">Difficulté +/-</a>
     </div>
   </div>
+  <p v-if="valid" class="win">Victoire!</p>
 </template>
 
 <script>
 import sample from 'lodash.sample'
 import Tile from './Tile.vue'
+
 
 let backupTiles = null
 
@@ -34,7 +33,6 @@ export default {
   data () {
     return {
       image: null,
-      showingOriginal: false,
       size: {
         horizontal: 0,
         vertical: 0
@@ -184,11 +182,13 @@ export default {
       this.tiles = JSON.parse(backupTiles)
     },
 
-    /**
-     * Restart the game.
-     */
-    restart () {
-      this.$emit('restart')
+     changeLevel () {
+      if (this.size.horizontal == 2) {
+        this.size.horizontal = 3
+      } else {
+        this.size.horizontal = 2
+      }
+      this.start({ image: this.image, size: this.size })
     }
   }
 }
@@ -200,15 +200,17 @@ export default {
   position: relative;
   box-shadow: 0 0 0px 10px;
 
-  .original {
+  
+}
+.frame-wrapper > .original {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-  }
+}
 
-  p.win {
+.frame-wrapper > p.win {
     position: absolute;
     top: 0;
     left: 0;
@@ -223,38 +225,26 @@ export default {
     margin: 0 0;
     background: rgba(43, 181, 82, 0.7);
     text-transform: uppercase;
-  }
 }
 
 .frame {
   display: flex;
   flex-wrap: wrap;
-  background: #612211 url('../assets/board.jpg');
+  background: #612211;
   background-size: cover;
 }
 
-.controls {
-  margin-top: 30px;
-
-  a {
+.controls > a {
     display: inline-block;
     text-decoration: none;
     padding: 6px 12px;
-    background: #f78403;
+    background: #1a3b5a;
     color: #fff;
     border-radius: 3px;
-
-    &.toggle-original {
-      background: #d05b88;
-    }
-
-    &.restart {
-      background: #368ba0;
-    }
-
-    &.shuffle {
-      background: #3ebb5c;
-    }
+    margin: 0 5px;
   }
+
+.controls {
+  margin-top: 30px;
 }
 </style>

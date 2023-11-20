@@ -149,7 +149,6 @@ export default {
 <style>
 * {
   box-sizing: border-box;
-  color: black
 }
 
 /* Create two equal columns that floats next to each other */
@@ -188,5 +187,10 @@ img {
   border: solid 1px black;
   margin: 3px 18px;
   background-color: #d2edd3;
+  text-align: center;
+}
+
+h3, h1{
+  text-align: center;
 }
 </style>

@@ -10,12 +10,22 @@ const router = createRouter({
       component: Home
     },
     {
+      path: '/puzzle',
+      name: 'Puzzle',
+      component: () => import('../views/Puzzle.vue')
+    },
+    {
       path: '/gamelink',
       name: 'gamelink',
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/GameLink.vue')
+    },
+    {
+      path: '/soundAssociation',
+      name: 'SoundAssociation',
+      component: () => import('../views/SoundAssociation.vue')
     }
   ]
 })
