@@ -1,6 +1,6 @@
 <template>
   <form id="optionsForm" @submit.prevent="start">
-    <img :src="image" v-if="image">
+    <img :src="image" v-if="image" >
     <div>
       <button v-if="image">Start</button>
     </div>
@@ -8,14 +8,15 @@
 </template>
 
 <script>
-import image from "../assets/Baleine_Puzzle.jpg"
+import image2 from "../assets/Baleine_Puzzle2.jpg"
+import image3 from "../assets/Baleine_Puzzle3.jpg"
 
 export default {
   data () {
     return {
-      image: image,
+      image: window.innerWidth < 550 ? image3 : image2,
       size: {
-        horizontal: 3,
+        horizontal: 2,
         vertical: 3
       }
     }
@@ -30,14 +31,6 @@ export default {
         image: this.image,
         size: this.size
       })
-    },
-
-    /**
-     * Reset the options.
-     */
-    reset () {
-      this.image = null
-      document.querySelector('#optionsForm').reset()
     }
   }
 }
@@ -57,7 +50,7 @@ img {
 button {
   -webkit-appearance: none;
   padding: 6px 12px;
-  background: #1ca76a;
+  background: #1a3b5a;
   color: #fff;
   border-radius: 3px;
   border: 0;
