@@ -17,9 +17,9 @@ export default {
     data() {
         return {
             animals: [
-                { name: 'baleine', image: '/src/assets/baleine.jpg', sound: '/src/assets/baleine.mp3' },
-                { name: 'dauphin', image: '/src/assets/dauphin.jpg', sound: '/src/assets/dauphin.mp3' },
-                { name: 'phoque', image: '/src/assets/phoque.jpg', sound: '/src/assets/phoque.mp3' }
+                { name: 'baleine', image: '/images/baleine.jpg', sound: '/sons/baleine.mp3' },
+                { name: 'dauphin', image: '/images/dauphin.jpg', sound: '/sons/dauphin.mp3' },
+                { name: 'phoque', image: '/images/phoque.jpg', sound: '/sons/phoque.mp3' }
             ],
             currentAnimal: null
         }
