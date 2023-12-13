@@ -3,7 +3,7 @@
         <h1>Connexion</h1>
         <form @submit.prevent="login">
             <label for="email">Email:</label>
-            <input type="email" id="email" v-model="email" required>
+            <input type="string" id="email" v-model="email" required>
             <label for="password">Mot de passe:</label>
             <input type="password" id="password" v-model="password" required>
             <button type="submit">Se connecter</button>
@@ -25,7 +25,7 @@ export default {
         async login() {
             try {
                 const response = await axios.post('http://localhost:3000/api/auth/signin', {
-                    email: this.email,
+                    mail: this.email,
                     password: this.password
                 });
                 const token = response.data;
