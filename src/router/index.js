@@ -26,6 +26,21 @@ const router = createRouter({
       path: '/soundAssociation',
       name: 'SoundAssociation',
       component: () => import('../views/SoundAssociation.vue')
+    },
+    {
+      path: '/adminPanel',
+      name: 'AdminPanel',
+      component: () => import('../views/AdminPanel.vue')
+    },
+    {
+      path: '/Login',
+      name: 'Login',
+      component: () => import('../views/Login.vue')
+    },
+    {
+    path: '/register',
+    name: 'Register',
+    component: () => import('../views/Register.vue')
     }
   ]
 })
