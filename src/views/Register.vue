@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -21,20 +23,13 @@ export default {
   methods: {
     signup() {
       // Make a POST request to the signup route
-      fetch('http://localhost:3000/api/auth/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          mail: this.mail,
-          password: this.password
-        })
+      axios.post('http://localhost:3000/api/auth/signup', {
+        mail: this.mail,
+        password: this.password
       })
-      .then(response => response.json())
-      .then(data => {
+      .then(response => {
         // Handle the response data
-        console.log(data);
+        console.log(response.data);
       })
       .catch(error => {
         // Handle any errors
@@ -44,3 +39,4 @@ export default {
   }
 };
 </script>
+

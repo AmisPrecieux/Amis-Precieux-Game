@@ -29,18 +29,29 @@ export default {
                     password: this.password
                 });
                 const token = response.data;
-                // Gérer la réponse du serveur ici
-                // console.log(token);
+                console.log(token.access_token);
+                sessionStorage.setItem('token', token.access_token); // Enregistrer le token dans le sessionStorage
+                console.log("vous êtes connecté");
+                this.checkToken(); // Appel de la méthode pour vérifier si le token est enregistré
             } catch (error) {
-                // console.log(token);
                 console.error(error);
+            }
+        },
+        async checkToken() {
+            const token = sessionStorage.getItem('token');
+            if (token) {
+                console.log("Le token est enregistré");
+                } else {
+                console.log("Le token n'est pas enregistré");
             }
         }
     }
-};
+}
 </script>
-
 
 <style scoped>
 /* Ajoutez ici votre CSS personnalisé pour la page de connexion */
 </style>
+
+
+
