@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1>Connexion</h1>
         <form @submit.prevent="login">
+            <h1>Connexion</h1>
             <label for="email">Email:</label>
             <input type="string" id="email" v-model="email" required>
             <label for="password">Mot de passe:</label>
@@ -51,7 +51,40 @@ export default {
 
 <style scoped>
 /* Ajoutez ici votre CSS personnalisé pour la page de connexion */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 200px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #d2edd3;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
 </style>
-
-
-
