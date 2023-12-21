@@ -1,14 +1,14 @@
 
 <template>
     <div class="sound-association">
-        <h1>Quelle animal fait ce son ?</h1>
+        <h1>Quel animal fait ce son ?</h1>
         <audio ref="audioPlayer" :src="audioSrc"></audio>
-        <button @click="playAudio" class="play-audio-button">Jouer le son</button>
         <table class="animals-container">
             <td v-for="(animal, index) in animals" :key="index" class="animal-container">
                 <img :src="animal.image" @click="checkAnswer(animal)" class="animal-image">
             </td>
         </table>
+        <button @click="playAudio" class="play-audio-button">Jouer le son</button>
     </div>
 </template>
 

@@ -3,19 +3,20 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import { createPinia } from 'pinia'
+import '@fontsource/noto-sans/100.css';
+import '@fontsource/noto-sans/200.css';
+import '@fontsource/noto-sans/300.css';
+import '@fontsource/noto-sans/400.css';
+import '@fontsource/noto-sans/500.css';
+import '@fontsource/noto-sans/600.css';
+import '@fontsource/noto-sans/700.css';
+import '@fontsource/noto-sans/800.css';
+import '@fontsource/noto-sans/900.css';
 import axios from 'axios'
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-
-library.add(faSignOutAlt)
 
 
 const app = createApp(App)
-const pinia = createPinia()
 app.config.globalProperties.$axios = axios
 
 app.use(router)
-app.use(pinia)
 app.mount('#app')
