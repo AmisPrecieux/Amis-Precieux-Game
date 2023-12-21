@@ -33,7 +33,7 @@ const router = createRouter({
       component: () => import('../views/AdminPanel.vue')
     },
     {
-      path: '/Login',
+      path: '/LoginAdmin',
       name: 'Login',
       component: () => import('../views/Login.vue')
     },
