@@ -20,7 +20,6 @@ import { RouterLink, RouterView } from 'vue-router'
 <style scoped>
 .navbar {
   width: 100%;
-  background-color: #d2edd3;
   overflow: hidden;
 }
 

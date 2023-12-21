@@ -10,6 +10,8 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@fontsource/noto-sans": "^5.0.18",
+    "axios": "^1.6.2",
     "blueimp-load-image": "^5.16.0",
     "lodash.sample": "^4.2.1",
     "tailwindcss": "^3.3.5",

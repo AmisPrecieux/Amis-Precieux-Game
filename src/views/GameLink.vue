@@ -5,7 +5,7 @@
       <h3>Images</h3>
       <div class="row">
         <div class="column">
-          <img src="../assets/baleine.jpg" alt="Animal 1" />
+          <img src="/images/baleine.jpg" alt="Animal 1" />
         </div>
         <div class="column">
           <draggable
@@ -23,7 +23,7 @@
       </div>
       <div class="row">
         <div class="column">
-          <img src="../assets/dauphin.jpg" alt="Animal 2" />
+          <img src="/images/dauphin.jpg" alt="Animal 2" />
         </div>
         <div class="column">
           <draggable
@@ -41,7 +41,7 @@
       </div>
       <div class="row">
         <div class="column">
-          <img src="../assets/tortue.jpg" alt="Animal 3" />
+          <img src="/images/tortue.jpg" alt="Animal 3" />
         </div>
         <div class="column">
           <draggable
@@ -60,7 +60,7 @@
       </div>
       <div class="row">
         <div class="column">
-          <img src="../assets/phoque.jpg" alt="Animal 4" />
+          <img src="/images/phoque.jpg" alt="Animal 4" />
         </div>
         <div class="column">
           <draggable
