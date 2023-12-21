@@ -1,7 +1,3 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router'
-</script>
-
 <template>
   <header>
     <div class="navbar">
@@ -17,10 +13,45 @@ import { RouterLink, RouterView } from 'vue-router'
   <RouterView />
 </template>
 
+<script >
+import { RouterLink, RouterView } from 'vue-router'
+
+export default {
+  name: 'App',
+  data() {
+    return {
+      isLogin: false
+    }
+  },
+  mounted() {
+    this.checkLogin();
+  },
+  methods: {
+    checkLogin() {
+      const token = sessionStorage.getItem('token');
+      if (token) {
+        this.isLogin = true
+      }
+    }
+
+  },
+  watch: {
+    $route() {
+      this.checkLogin();
+    },
+    immediate: true
+  }
+}
+
+
+</script>
+
+
 <style scoped>
 .navbar {
   width: 100%;
   overflow: hidden;
+  position: fixed;
 }
 
 .navbar a {
@@ -40,5 +71,20 @@ import { RouterLink, RouterView } from 'vue-router'
 .navbar a.active {
   background-color: #4CAF50;
   color: white;
+}
+.Icon{
+  width: 25px;
+  height: 25px;
+}
+
+.logout {
+  background-color: #d2edd3;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px;
+  right: 10px;
+  float: right;
+  
 }
 </style>

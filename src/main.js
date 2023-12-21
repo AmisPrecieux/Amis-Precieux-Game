@@ -12,9 +12,11 @@ import '@fontsource/noto-sans/600.css';
 import '@fontsource/noto-sans/700.css';
 import '@fontsource/noto-sans/800.css';
 import '@fontsource/noto-sans/900.css';
+import axios from 'axios'
+
 
 const app = createApp(App)
+app.config.globalProperties.$axios = axios
 
 app.use(router)
-
 app.mount('#app')
