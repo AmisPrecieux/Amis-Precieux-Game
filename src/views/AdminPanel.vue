@@ -23,53 +23,67 @@
       </form>
     </div>
     <div>
-    <form @submit.prevent="uploadImage(4)">
+      <form @submit.prevent="uploadImage(4)">
         <h3>Image GameLink 3</h3>
         <input type="file" ref="fileInput4" @change="handleFileChange(4)" />
         <button type="submit">Ajouter</button>
       </form>
-  </div>
-  <div>
-    <form @submit.prevent="uploadImage(5)">
+    </div>
+    <div>
+      <form @submit.prevent="uploadImage(5)">
         <h3>Image GameLink 4</h3>
         <input type="file" ref="fileInput5" @change="handleFileChange(5)" />
         <button type="submit">Ajouter</button>
       </form>
-  </div>
-    <button @click="tets">test</button>
-  </div>
+    </div>
+    <button @click="logout">Déconnexion</button>
 
-
-  
-  
+    
+  </div>
 </template>
 
 <script>
 import axios from 'axios';
 export default {
   name: 'AdminPanel',
+  mounted() {
+   this.checkLogin();
+  },
+
   methods: {
     handleFileChange(GameNumber) {
-      if (GameNumber == 1){
+      if (GameNumber == 1) {
         this.selectedFile = this.$refs.fileInput1.files[0];
       }
-      if (GameNumber == 2){
+      if (GameNumber == 2) {
         this.selectedFile = this.$refs.fileInput2.files[0];
       }
-      if (GameNumber == 3){
+      if (GameNumber == 3) {
         this.selectedFile = this.$refs.fileInput3.files[0];
       }
-      if (GameNumber == 4){
+      if (GameNumber == 4) {
         this.selectedFile = this.$refs.fileInput4.files[0];
       }
-      if (GameNumber == 5){
+      if (GameNumber == 5) {
         this.selectedFile = this.$refs.fileInput5.files[0];
       }
-      
-    },
 
+    },
+    logout() {
+      sessionStorage.removeItem('token');
+      this.$forceUpdate();
+      this.$router.push('/loginAdmin');
+    },
+    checkLogin() {
+      const token = sessionStorage.getItem('token');
+      if (!token) {
+        this.$router.push('/loginAdmin');
+      }
+    },
+  
+  
     async fetchGameId(gameName) {
-      try { 
+      try {
         console.log(gameName);
         const token = sessionStorage.getItem('token');
         const response = await fetch(`http://localhost:3000/name/${gameName}`, {
@@ -99,8 +113,8 @@ export default {
         console.error('No file selected');
         return;
       }
-       // Vérifier si le format du fichier est en PNG
-       if (this.selectedFile.type !== 'image/png') {
+      // Vérifier si le format du fichier est en PNG
+      if (this.selectedFile.type !== 'image/png') {
         alert('Veuillez sélectionner un fichier au format PNG');
         this.$refs.fileInput1.value = '';
         this.$refs.fileInput2.value = '';
@@ -119,7 +133,12 @@ export default {
       try {
         const token = sessionStorage.getItem('token');
         // const gameId = await this.fetchGameId('Puzzle 6 pièces');
-        const gameId = "6578b0ccc125f56f10261eb5";
+        if (GameNumber == 1) {
+          const gameId = "6578b0ccc125f56f10261eb5";
+        }
+        else {
+
+        }
         await fetch(`http://localhost:3000/api/game/image${GameNumber}/${gameId}`, {
           method: 'PUT',
           body: formData,
@@ -162,6 +181,12 @@ export default {
     }
 
   },
+  watch: {
+    $route() {
+      this.checkLogin();
+    },
+    immediate: true
+  },
   data() {
     return {
       selectedFile: null,
@@ -202,12 +227,28 @@ button {
   cursor: pointer;
   border-radius: 10px;
 }
+
 input[type="file"] {
   border: none;
   cursor: pointer;
 }
+
 button:hover {
   background-color: #d2edd3;
 }
+.Icon{
+  width: 25px;
+  height: 25px;
+}
 
+.logout {
+  background-color: #d2edd3;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 10px;
+  right: 10px;
+  float: right;
+}
+  
 </style>

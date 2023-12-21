@@ -13,6 +13,7 @@
 
 <script>
 import axios from 'axios';
+import { checkLogin } from '../methods';
 
 export default {
     data() {
@@ -29,9 +30,11 @@ export default {
                     password: this.password
                 });
                 const token = response.data;
-                console.log(token.access_token);
                 sessionStorage.setItem('token', token.access_token); // Enregistrer le token dans le sessionStorage
                 console.log("vous êtes connecté");
+                this.$router.push('/adminPanel'); // Redirect to adminPanel
+                this.$forceUpdate();
+                console.log(token);
                 this.checkToken(); // Appel de la méthode pour vérifier si le token est enregistré
             } catch (error) {
                 console.error(error);
@@ -40,6 +43,7 @@ export default {
         async checkToken() {
             const token = sessionStorage.getItem('token');
             if (token) {
+                checkLogin()
                 console.log("Le token est enregistré");
                 } else {
                 console.log("Le token n'est pas enregistré");
@@ -50,7 +54,6 @@ export default {
 </script>
 
 <style scoped>
-/* Ajoutez ici votre CSS personnalisé pour la page de connexion */
 .container {
     display: flex;
     flex-direction: column;
