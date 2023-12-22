@@ -32,7 +32,7 @@
               :src="currentItem.image1"
               :alt="currentItem.Name"
             />
-            <RouterLink to="/puzzle">
+            <RouterLink :to="'/' + currentItem.slug">
               <button class="button">Jouer</button>
             </RouterLink>
           </div>
@@ -58,25 +58,6 @@ export default {
   data() {
     return {
       data: [
-        {
-          _id: '6578b0ccc125f56f10261eb5',
-          Name: 'Puzzle 6 pièces',
-          Description:
-            'Explore le monde des océans avec notre puzzle magique sur les baleines en 6 pièces, et plonge dans une aventure marine pleine de découvertes !',
-          Difficulty: 3,
-          date: '2023-12-12T19:13:16.659Z',
-          __v: 0,
-          image1: '/images/Baleine_Puzzle3.jpg'
-        },
-        {
-          _id: '6580923762abef8f7fbc8220',
-          Name: 'Association des sons',
-          Description: 'Associez les sons aux animaux',
-          Difficulty: 2,
-          date: '2023-12-18T18:40:55.993Z',
-          __v: 0,
-          image1: '/images/baleine.jpg'
-        }
       ],
       currentItemIndex: 0
     }
@@ -96,7 +77,7 @@ export default {
   },
   mounted() {
     axios
-      .get('https:localhost:3000/api/game')
+      .get('https://api.amisprecieux.fr/api/game')
       .then((response) => {
         this.data = response.data
         console.log(this.data)

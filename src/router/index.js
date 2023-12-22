@@ -10,17 +10,17 @@ const router = createRouter({
       component: Home
     },
     {
-      path: '/puzzle',
+      path: '/puzzle-6-pieces',
       name: 'Puzzle',
       component: () => import('../views/Puzzle.vue')
     },
     {
-      path: '/gamelink',
-      name: 'gamelink',
+      path: '/association-image',
+      name: 'associationImage',
       component: () => import('../views/GameLink.vue')
     },
     {
-      path: '/soundAssociation',
+      path: '/association-sonore',
       name: 'SoundAssociation',
       component: () => import('../views/SoundAssociation.vue')
     },
