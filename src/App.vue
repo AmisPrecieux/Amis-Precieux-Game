@@ -3,9 +3,7 @@
     <div class="navbar">
       <nav>
         <RouterLink to="/">Amis Précieux</RouterLink>
-        <RouterLink to="/gamelink">Link game</RouterLink>
-        <RouterLink to="/puzzle">Puzzle</RouterLink>
-        <RouterLink to="/soundAssociation">Sound Association</RouterLink>
+        <a href="https://amisprecieux.fr">Boutique</a>
       </nav>
     </div>
   </header>
@@ -13,7 +11,7 @@
   <RouterView />
 </template>
 
-<script >
+<script>
 import { RouterLink, RouterView } from 'vue-router'
 
 export default {
@@ -24,28 +22,24 @@ export default {
     }
   },
   mounted() {
-    this.checkLogin();
+    this.checkLogin()
   },
   methods: {
     checkLogin() {
-      const token = sessionStorage.getItem('token');
+      const token = sessionStorage.getItem('token')
       if (token) {
         this.isLogin = true
       }
     }
-
   },
   watch: {
     $route() {
-      this.checkLogin();
+      this.checkLogin()
     },
     immediate: true
   }
 }
-
-
 </script>
-
 
 <style scoped>
 .navbar {
@@ -69,10 +63,10 @@ export default {
 }
 
 .navbar a.active {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
 }
-.Icon{
+.Icon {
   width: 25px;
   height: 25px;
 }
@@ -85,6 +79,5 @@ export default {
   padding: 10px;
   right: 10px;
   float: right;
-  
 }
 </style>
