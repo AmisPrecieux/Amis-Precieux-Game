@@ -86,7 +86,7 @@ export default {
       try {
         console.log(gameName);
         const token = sessionStorage.getItem('token');
-        const response = await fetch(`http://localhost:3000/name/${gameName}`, {
+        const response = await fetch(`https://api.amisprecieux.fr/name/${gameName}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -139,7 +139,7 @@ export default {
         else {
 
         }
-        await fetch(`http://localhost:3000/api/game/image${GameNumber}/${gameId}`, {
+        await fetch(`https://api.amisprecieux.fr/api/game/image${GameNumber}/${gameId}`, {
           method: 'PUT',
           body: formData,
           headers: {
@@ -161,7 +161,7 @@ export default {
     async tets() {
       const token = sessionStorage.getItem('token');
       console.log(JSON.stringify(token))
-      await axios.get('http://localhost:3000/api/part/', {
+      await axios.get('https://api.amisprecieux.fr/api/part/', {
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
