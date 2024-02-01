@@ -38,6 +38,12 @@ const router = createRouter({
     path: '/register',
     name: 'Register',
     component: () => import('../views/Register.vue')
+    },
+    {
+      path: '/searchword',
+      name: 'SearchWord',
+      component: () => import('../views/SearchWord.vue')
+  
     }
   ]
 })
