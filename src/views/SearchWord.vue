@@ -35,17 +35,15 @@
   </template>
   
   <script>
-  // import func from "../../vue-temp/vue-editor-bridge";
   export default {
     name: "Wordsearch",
     props: {
       words: {
         default: () => [
-          { word: "BBBBBB" },
-          { word: "PDDDD" },
-          { word: "TFZFZ" },
-          { word: "OQDD" },
-          { word: "DADA" },
+          { word: "baleine" },
+          { word: "phoque" },
+          { word: "tortue" },
+          { word: "dauphin" },
         ],
       },
       size: {
@@ -91,12 +89,7 @@
         }));
       },
   
-      generateLetters: function (width, height, words) {
-        // console.log("1");
-        // let width = this.size.width;
-        // let height = this.size.height;
-        // console.log("2");
-  
+      generateLetters: function (width, height, words) {  
         let cellVal = { letter: "", selected: false, checked: false };
   
         let outArray = [];
@@ -105,11 +98,9 @@
         for (let i = 0; i < width; i++) {
           rowArray[i] = { ...cellVal };
         }
-        // console.log("3");
         for (let i = 0; i < height; i++) {
           outArray[i] = rowArray.map((row) => ({ ...row }));
         }
-        // console.log("4");
         let worditer = 0;
         let wordlen = 0;
         let word = "";
@@ -129,8 +120,6 @@
         const alphabet = "abcdefghijklmnopqrstuvwxyz";
   
         for (let i = 0; i < 100; i++) {
-          // console.log("A");
-          // console.log(words);
           word = words[worditer].word;
           wordlen = word.length;
   
@@ -188,7 +177,6 @@
               break;
             }
           }
-          // console.log("D");
           if (!fail) {
             for (let j = 0; j < wordlen; j++) {
               x = x0 + xdir * j;
@@ -203,12 +191,10 @@
             words[worditer].yDir = ydir;
             worditer++;
           }
-          // console.log("E");
           if (worditer === words.length) {
             break;
           }
         }
-        // console.log("5");
         outArray.forEach((row) =>
           row.forEach((cell) => {
             if (cell.letter === "") {
@@ -216,7 +202,6 @@
             }
           })
         );
-        // console.log("6");
         return outArray;
       },
       clickCell: function (x, y) {
@@ -249,8 +234,6 @@
         );
       },
       checkAttempt: function () {
-        // console.log("A");
-        // console.log(this.wordArray);
   
         for (let i = 0; i < this.wordArray.length; i++) {
           const word = this.wordArray[i];
@@ -261,7 +244,6 @@
             word.yDir === this.polar.y &&
             word.word.length === this.polar.length
           ) {
-            // console.log(this.wordArray[i]);
             this.select("checked");
             this.wordArray[i].found = true;
             break;
@@ -321,7 +303,6 @@
   };
   </script>
   
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
   <style scoped>
   .wordsearch {
     --border: #1c1c1c;
@@ -336,7 +317,7 @@
     height: 100%;
     align-items: center;
     padding:  10%;
-    background-image: url('../../public/images/fond_jeu_1.png');
+    background-image: url('/images/fond_jeu_1.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -355,7 +336,6 @@
     margin: 0 1rem;
     min-width: 20vw;
     width: 12rem;
-    /* height: 100%; */
     padding: 0;
   
     background: rgb(247, 245, 245);
@@ -371,7 +351,6 @@
     margin: -1px 0px;
     width: calc(100%);
   
-    /* background: pink; */
     padding: 0.25rem;
     padding-left: 2.5rem;
     align-items: center;
@@ -393,14 +372,12 @@
     margin-top: -0.2rem;
     margin-bottom: -0.2rem;
     margin-left: -2.5rem;
-    /* margin-right: 0.5rem; */
     justify-content: center;
     align-items: center;
     vertical-align: middle;
     text-align: center;
   }
   
-  /* */
   .cell {
     border: 1px solid #333;
     border-radius: var(--border-roundy);
