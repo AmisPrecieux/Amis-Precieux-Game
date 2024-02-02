@@ -40,10 +40,10 @@
     props: {
       words: {
         default: () => [
-          { word: "baleine" },
-          { word: "phoque" },
-          { word: "tortue" },
-          { word: "dauphin" },
+          { word: "BALEINE" },
+          { word: "PHOQUE" },
+          { word: "TORTUE" },
+          { word: "DAUPHIN" },
         ],
       },
       size: {
@@ -117,7 +117,9 @@
         let xdir = 0;
         let ydir = 0;
   
-        const alphabet = "abcdefghijklmnopqrstuvwxyz";
+        // const alphabet = "abcdefghijklmnopqrstuvwxyz";
+        const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
   
         for (let i = 0; i < 100; i++) {
           word = words[worditer].word;
@@ -128,7 +130,6 @@
   
           rand = Math.random();
           y0 = Math.floor(rand * height);
-          // console.log("B");
           rand = Math.random();
           if (rand < 0.125) {
             xdir = 1;
@@ -312,7 +313,6 @@
     --color-bad: orangered;
   
     display: flex;
-    font-family: cursive;
     width: 100%;
     height: 100%;
     align-items: center;
@@ -349,8 +349,7 @@
     border-left: none;
     border-right: none;
     margin: -1px 0px;
-    width: calc(100%);
-  
+    width: calc(100%);  
     padding: 0.25rem;
     padding-left: 2.5rem;
     align-items: center;
