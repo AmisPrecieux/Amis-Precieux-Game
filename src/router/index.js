@@ -43,7 +43,11 @@ const router = createRouter({
       path: '/searchword',
       name: 'SearchWord',
       component: () => import('../views/SearchWord.vue')
-  
+    },
+    {
+      path: '/cardgame',
+      name: 'CardGame',
+      component: () => import('../views/CardGame.vue')
     }
   ]
 })
