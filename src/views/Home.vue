@@ -143,6 +143,8 @@ export default {
 
 .game-image {
   max-width: 100%;
+  border-radius: 5%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
 .carousel-button {
