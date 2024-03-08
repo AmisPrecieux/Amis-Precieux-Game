@@ -1,50 +1,65 @@
 <template>
   <div class="home">
     <div class="row">
-      <div class="column">
+      <div>
         <div class="game-info" v-if="currentItem" :key="currentItem._id">
-          <h1 class="game-title">{{ currentItem.Name }}</h1>
-          <h2 style="font-weight: bold">
-            Difficulté :
+          <h1 class="game-title">{{ currentItem.name }}</h1>
+          <div style="white-space: nowrap">
+            <h2 style="font-weight: bold">Difficulté :</h2>
             <template v-for="star in 5" :key="star">
               <img
                 :src="
-                  star <= currentItem.Difficulty ? '/images/StarFull.jpg' : '/images/StarEmpty.jpg'
+                  star <= currentItem.difficulty ? '/images/StarFull.jpg' : '/images/StarEmpty.jpg'
                 "
                 class="star"
               />
             </template>
-          </h2>
-          <p>{{ currentItem.Description }}</p>
+          </div>
+          <p>{{ currentItem.description }}</p>
         </div>
       </div>
-      <div class="column">
-        <div class="carousel third-outer">
-          <a @click="prevItem" class="carousel-button">
+      <div class="carousel">
+        <div>
+          <a @click="prevItem">
             <img src="/images/ArrowL.png" alt="Previous" />
           </a>
         </div>
-        <div class="carousel third-inner">
+        <div>
           <div v-if="currentItem" :key="currentItem._id">
             <img
               class="game-image"
               v-if="currentItem"
               :src="currentItem.image1"
-              :alt="currentItem.Name"
+              :alt="currentItem.name"
             />
-            <RouterLink :to="'/' + currentItem.slug">
-              <button class="button">Jouer</button>
-            </RouterLink>
+            <button class="button" @click="openPopup()">Jouer</button>
           </div>
         </div>
-        <div class="carousel third-outer
-        +
-        ">
-          <a @click="nextItem" class="carousel-button">
+        <div>
+          <a @click="nextItem">
             <img src="/images/ArrowR.png" alt="Next" />
           </a>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="popup" id="popup">
+    <div class="popup-content" v-if="currentItem" :key="currentItem._id">
+      <button @click="closePopup()">Retour</button>
+      <h1>Objectif</h1>
+      <h2 style="font-weight: bold">
+        Difficulté :
+        <template v-for="star in 5" :key="star">
+          <img
+            :src="star <= currentItem.difficulty ? '/images/StarFull.jpg' : '/images/StarEmpty.jpg'"
+            class="star"
+          />
+        </template>
+      </h2>
+      <p>{{ currentItem.instructions }}</p>
+      <RouterLink :to="'/' + currentItem.slug">
+        <button class="button">Commencer</button>
+      </RouterLink>
     </div>
   </div>
 </template>
@@ -57,8 +72,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      data: [
-      ],
+      data: [],
       currentItemIndex: 0
     }
   },
@@ -73,11 +87,19 @@ export default {
     },
     nextItem() {
       this.currentItemIndex = (this.currentItemIndex + 1) % this.data.length
+    },
+    openPopup() {
+      var popup = document.getElementById('popup')
+      popup.style.display = 'block'
+    },
+    closePopup() {
+      var popup = document.getElementById('popup')
+      popup.style.display = 'none'
     }
   },
   mounted() {
     axios
-      .get('https://api.amisprecieux.fr/api/game')
+      .get('http://localhost:3000/api/game')
       .then((response) => {
         this.data = response.data
         console.log(this.data)
@@ -99,11 +121,17 @@ export default {
   font-family: 'Noto Sans', sans-serif;
 }
 
-/* Create two equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
+.popup {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #3d3d3d80;
+  backdrop-filter: blur(5px);
 }
 
 .game-title {
@@ -129,16 +157,27 @@ export default {
 }
 
 /* Clear floats after the columns */
-.row:after {
-  content: '';
-  display: table;
-  clear: both;
+.row {
+  grid-template-columns: 2fr 3fr;
+  display: grid;
+  padding: 10px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .carousel {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+    float: left;
+    width: 100%;
+    padding: 10px;
+    margin: 0;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .game-image {
@@ -182,7 +221,7 @@ a:hover {
 }
 
 .button {
-  background-color: #285986;
+  background-color: #3b3b3b;
   border: none;
   color: white;
   padding: 15px 32px;

@@ -25,7 +25,7 @@ export default {
     methods: {
         async login() {
             try {
-                const response = await axios.post('https://api.amisprecieux.fr/api/auth/signin', {
+                const response = await axios.post('http://localhost:3000/api/auth/signin', {
                     mail: this.email,
                     password: this.password
                 });
